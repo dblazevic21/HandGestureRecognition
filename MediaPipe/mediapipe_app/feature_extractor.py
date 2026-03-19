@@ -13,6 +13,21 @@ MASK_FEATURE_VECTOR_SIZE = (MASK_GRID_SIZE * MASK_GRID_SIZE) + 7 + 11
 
 
 @dataclass(slots=True)
+class FallbackMaskCandidate:
+    variant: str
+    mask: np.ndarray | None
+    accepted: bool
+    reason: str
+    score: float
+    ratio: float
+    bbox_area_ratio: float
+    extent: float
+    aspect_ratio: float
+    solidity: float
+    touches_border: int
+
+
+@dataclass(slots=True)
 class HandDetection:
     feature_vector: np.ndarray | None
     bbox: tuple[int, int, int, int] | None
@@ -22,6 +37,8 @@ class HandDetection:
     detected: bool
     source: str
     finger_states: dict[str, str] = field(default_factory=dict)
+    debug_reason: str | None = None
+    debug_metrics: dict[str, float | int | str] = field(default_factory=dict)
 
 
 class MediaPipeFeatureExtractor:
@@ -61,7 +78,7 @@ class MediaPipeFeatureExtractor:
         if detection.feature_vector is not None:
             return detection
 
-        fallback_mask = self._extract_mask_from_image(image)
+        fallback_mask, fallback_candidate = self._extract_mask_from_image(image)
         fallback_vector = self._build_mask_feature_vector(fallback_mask)
         fallback_bbox = self._mask_to_bbox(fallback_mask)
 
@@ -76,6 +93,8 @@ class MediaPipeFeatureExtractor:
                     detected=False,
                     source="background",
                     finger_states={},
+                    debug_reason="background_allowed",
+                    debug_metrics=self._candidate_to_metrics(fallback_candidate),
                 )
             return HandDetection(
                 feature_vector=None,
@@ -86,6 +105,8 @@ class MediaPipeFeatureExtractor:
                 detected=False,
                 source="none",
                 finger_states={},
+                debug_reason=fallback_candidate.reason if fallback_candidate is not None else "no_fallback_candidate",
+                debug_metrics=self._candidate_to_metrics(fallback_candidate),
             )
 
         annotated = image.copy()
@@ -102,6 +123,8 @@ class MediaPipeFeatureExtractor:
             detected=True,
             source="fallback",
             finger_states={},
+            debug_reason=fallback_candidate.reason if fallback_candidate is not None else "fallback_accepted",
+            debug_metrics=self._candidate_to_metrics(fallback_candidate),
         )
 
     def analyze_frame(self, frame_bgr: np.ndarray) -> HandDetection:
@@ -122,6 +145,8 @@ class MediaPipeFeatureExtractor:
                 detected=False,
                 source="none",
                 finger_states={},
+                debug_reason="mediapipe_no_landmarks",
+                debug_metrics={},
             )
 
         hand_landmarks = results.multi_hand_landmarks[0]
@@ -152,6 +177,8 @@ class MediaPipeFeatureExtractor:
             detected=feature_vector is not None,
             source="mediapipe",
             finger_states=finger_states,
+            debug_reason="mediapipe_landmarks_detected" if feature_vector is not None else "mediapipe_mask_failed",
+            debug_metrics={},
         )
 
     def _read_bgr_image(self, image_path: Path) -> np.ndarray | None:
@@ -163,7 +190,7 @@ class MediaPipeFeatureExtractor:
             return None
         return cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 
-    def _extract_mask_from_image(self, image_bgr: np.ndarray) -> np.ndarray:
+    def _extract_mask_from_image(self, image_bgr: np.ndarray) -> tuple[np.ndarray, FallbackMaskCandidate | None]:
         gray = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2GRAY)
         blurred = cv2.GaussianBlur(gray, (5, 5), 0)
 
@@ -173,16 +200,16 @@ class MediaPipeFeatureExtractor:
         mask_normal = self._largest_component_mask(thresh)
         mask_inverse = self._largest_component_mask(thresh_inv)
 
-        scored_masks = [
-            (self._score_mask(mask_normal, image_bgr.shape[:2]), mask_normal),
-            (self._score_mask(mask_inverse, image_bgr.shape[:2]), mask_inverse),
+        candidates = [
+            self._score_mask("binary", mask_normal, image_bgr.shape[:2]),
+            self._score_mask("binary_inv", mask_inverse, image_bgr.shape[:2]),
         ]
-        scored_masks.sort(key=lambda item: item[0], reverse=True)
-        best_mask = scored_masks[0][1]
+        candidates.sort(key=lambda item: (item.accepted, item.score), reverse=True)
+        best_candidate = candidates[0] if candidates else None
 
-        if best_mask is None:
-            return np.zeros(image_bgr.shape[:2], dtype=np.uint8)
-        return best_mask
+        if best_candidate is None or best_candidate.mask is None or not best_candidate.accepted:
+            return np.zeros(image_bgr.shape[:2], dtype=np.uint8), best_candidate
+        return best_candidate.mask, best_candidate
 
     def _largest_component_mask(self, threshold_mask: np.ndarray) -> np.ndarray | None:
         contours, _ = cv2.findContours(threshold_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -199,28 +226,125 @@ class MediaPipeFeatureExtractor:
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
         return mask
 
-    def _score_mask(self, mask: np.ndarray | None, image_shape: tuple[int, int]) -> float:
+    def _score_mask(self, variant: str, mask: np.ndarray | None, image_shape: tuple[int, int]) -> FallbackMaskCandidate:
         if mask is None:
-            return -1.0
+            return FallbackMaskCandidate(
+                variant=variant,
+                mask=None,
+                accepted=False,
+                reason="no_component",
+                score=-1.0,
+                ratio=0.0,
+                bbox_area_ratio=0.0,
+                extent=0.0,
+                aspect_ratio=0.0,
+                solidity=0.0,
+                touches_border=0,
+            )
 
         white_pixels = int(np.count_nonzero(mask))
         total_pixels = mask.shape[0] * mask.shape[1]
         ratio = white_pixels / max(total_pixels, 1)
-        if ratio < 0.01 or ratio > 0.9:
-            return -1.0
-
         bbox = self._mask_to_bbox(mask)
         if bbox is None:
-            return -1.0
+            return FallbackMaskCandidate(
+                variant=variant,
+                mask=mask,
+                accepted=False,
+                reason="bbox_missing",
+                score=-1.0,
+                ratio=ratio,
+                bbox_area_ratio=0.0,
+                extent=0.0,
+                aspect_ratio=0.0,
+                solidity=0.0,
+                touches_border=0,
+            )
 
         x1, y1, x2, y2 = bbox
         box_area = max((x2 - x1 + 1) * (y2 - y1 + 1), 1)
         extent = white_pixels / box_area
+        bbox_area_ratio = box_area / max(total_pixels, 1)
+        aspect_ratio = (x2 - x1 + 1) / max((y2 - y1 + 1), 1)
 
         touches_border = int(x1 <= 1) + int(y1 <= 1) + int(x2 >= image_shape[1] - 2) + int(y2 >= image_shape[0] - 2)
-        border_penalty = touches_border * 0.08
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        if not contours:
+            return FallbackMaskCandidate(
+                variant=variant,
+                mask=mask,
+                accepted=False,
+                reason="no_contour",
+                score=-1.0,
+                ratio=ratio,
+                bbox_area_ratio=bbox_area_ratio,
+                extent=extent,
+                aspect_ratio=aspect_ratio,
+                solidity=0.0,
+                touches_border=touches_border,
+            )
 
-        return ratio + extent - border_penalty
+        contour = max(contours, key=cv2.contourArea)
+        contour_area = float(cv2.contourArea(contour))
+        hull = cv2.convexHull(contour)
+        hull_area = float(cv2.contourArea(hull))
+        solidity = contour_area / max(hull_area, 1.0)
+
+        rejection_reasons: list[str] = []
+        if ratio < 0.015:
+            rejection_reasons.append("ratio_too_small")
+        if ratio > 0.78:
+            rejection_reasons.append("ratio_too_large")
+        if bbox_area_ratio < 0.025:
+            rejection_reasons.append("bbox_too_small")
+        if bbox_area_ratio > 0.92:
+            rejection_reasons.append("bbox_too_large")
+        if extent < 0.12:
+            rejection_reasons.append("extent_too_sparse")
+        if extent > 0.98:
+            rejection_reasons.append("extent_too_dense")
+        if aspect_ratio < 0.18:
+            rejection_reasons.append("aspect_too_tall")
+        if aspect_ratio > 4.8:
+            rejection_reasons.append("aspect_too_wide")
+        if solidity < 0.12:
+            rejection_reasons.append("solidity_too_low")
+        if touches_border > 2:
+            rejection_reasons.append("touches_too_many_borders")
+
+        border_penalty = touches_border * 0.08
+        score = (ratio * 1.25) + extent + (solidity * 0.35) - border_penalty
+        accepted = not rejection_reasons
+        reason = "fallback_accepted" if accepted else ",".join(rejection_reasons)
+
+        return FallbackMaskCandidate(
+            variant=variant,
+            mask=mask,
+            accepted=accepted,
+            reason=reason,
+            score=float(score),
+            ratio=float(ratio),
+            bbox_area_ratio=float(bbox_area_ratio),
+            extent=float(extent),
+            aspect_ratio=float(aspect_ratio),
+            solidity=float(solidity),
+            touches_border=int(touches_border),
+        )
+
+    def _candidate_to_metrics(self, candidate: FallbackMaskCandidate | None) -> dict[str, float | int | str]:
+        if candidate is None:
+            return {}
+        return {
+            "fallback_variant": candidate.variant,
+            "fallback_score": round(candidate.score, 4),
+            "fallback_ratio": round(candidate.ratio, 4),
+            "fallback_bbox_area_ratio": round(candidate.bbox_area_ratio, 4),
+            "fallback_extent": round(candidate.extent, 4),
+            "fallback_aspect_ratio": round(candidate.aspect_ratio, 4),
+            "fallback_solidity": round(candidate.solidity, 4),
+            "fallback_touches_border": int(candidate.touches_border),
+            "fallback_accepted": int(candidate.accepted),
+        }
 
     def _build_mask_feature_vector(self, mask: np.ndarray) -> np.ndarray | None:
         bbox = self._mask_to_bbox(mask)

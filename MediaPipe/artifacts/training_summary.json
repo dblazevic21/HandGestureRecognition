@@ -1,0 +1,257 @@
+{
+  "model_path": "D:\\Diplomski\\MediaPipe\\artifacts\\gesture_model.joblib",
+  "summary_path": "D:\\Diplomski\\MediaPipe\\artifacts\\training_summary.json",
+  "class_csv_path": "D:\\Diplomski\\MediaPipe\\artifacts\\training_class_summary.csv",
+  "reason_csv_path": "D:\\Diplomski\\MediaPipe\\artifacts\\training_reason_summary.csv",
+  "fallback_csv_path": "D:\\Diplomski\\MediaPipe\\artifacts\\training_fallback_summary.csv",
+  "diagnostics_csv_path": "D:\\Diplomski\\MediaPipe\\artifacts\\training_diagnostics.csv",
+  "ukupno_slika_u_ulazu": 49243,
+  "uspjesno_obradeni_uzorci": 47519,
+  "uzorci_za_treniranje": 47519,
+  "broj_klasa": 40,
+  "uspjesno_po_datasetu": {
+    "24000-900-300t": 22556,
+    "leapGestRecog": 20000,
+    "rock-paper-scissors": 4963
+  },
+  "izvor_znacajki": {
+    "fallback": 38342,
+    "mediapipe": 9177
+  },
+  "obrada_po_izvoru": {
+    "fallback": 38342,
+    "mediapipe": 9177,
+    "none": 1724
+  },
+  "razlozi_obrade": {
+    "fallback_accepted": 38342,
+    "mediapipe_landmarks_detected": 9177,
+    "bbox_too_large,touches_too_many_borders": 1265,
+    "touches_too_many_borders": 453,
+    "bbox_too_large": 5,
+    "ratio_too_large,bbox_too_large,touches_too_many_borders": 1
+  },
+  "fallback_dijagnostika": {
+    "fallback_fallback_ratio": {
+      "count": 38342,
+      "min": 0.0191,
+      "mean": 0.273,
+      "max": 0.756
+    },
+    "fallback_fallback_score": {
+      "count": 38342,
+      "min": 0.3913,
+      "mean": 1.0729,
+      "max": 1.9832
+    },
+    "none_fallback_ratio": {
+      "count": 1724,
+      "min": 0.2728,
+      "mean": 0.49,
+      "max": 0.9603
+    },
+    "none_fallback_score": {
+      "count": 1724,
+      "min": 0.845,
+      "mean": 1.1541,
+      "max": 2.1829
+    }
+  },
+  "uspjesno_po_klasi": {
+    "leapGestRecog / c": 2000,
+    "leapGestRecog / down": 2000,
+    "leapGestRecog / fist": 2000,
+    "leapGestRecog / fist moved": 2000,
+    "leapGestRecog / index": 2000,
+    "leapGestRecog / l": 2000,
+    "leapGestRecog / ok": 2000,
+    "leapGestRecog / palm": 2000,
+    "leapGestRecog / palm moved": 2000,
+    "leapGestRecog / thumb": 2000,
+    "24000-900-300t / 1": 1200,
+    "24000-900-300t / 10": 1200,
+    "24000-900-300t / 11": 1200,
+    "24000-900-300t / 12": 1200,
+    "24000-900-300t / 13": 1200,
+    "24000-900-300t / 16": 1200,
+    "24000-900-300t / 18": 1200,
+    "24000-900-300t / 19": 1200,
+    "24000-900-300t / 2": 1200,
+    "24000-900-300t / 4": 1200,
+    "24000-900-300t / 6": 1200,
+    "24000-900-300t / 7": 1200,
+    "24000-900-300t / 8": 1200,
+    "24000-900-300t / 9": 1200,
+    "24000-900-300t / 14": 1197,
+    "24000-900-300t / 3": 1180,
+    "24000-900-300t / 5": 1022,
+    "24000-900-300t / 0": 991,
+    "24000-900-300t / 15": 762,
+    "24000-900-300t / 17": 604,
+    "rock-paper-scissors / peace": 526,
+    "rock-paper-scissors / thumbs": 525,
+    "rock-paper-scissors / scissor": 520,
+    "rock-paper-scissors / rock on": 518,
+    "rock-paper-scissors / fingers crossed": 501,
+    "rock-paper-scissors / rock": 498,
+    "rock-paper-scissors / paper": 489,
+    "rock-paper-scissors / up": 485,
+    "rock-paper-scissors / call me": 458,
+    "rock-paper-scissors / okay": 443
+  },
+  "preskoceno_po_klasi": {
+    "24000-900-300t / 17": 596,
+    "24000-900-300t / 15": 438,
+    "24000-900-300t / 0": 209,
+    "24000-900-300t / 5": 178,
+    "rock-paper-scissors / okay": 97,
+    "rock-paper-scissors / call me": 69,
+    "rock-paper-scissors / paper": 50,
+    "24000-900-300t / 3": 20,
+    "rock-paper-scissors / up": 19,
+    "rock-paper-scissors / rock on": 13,
+    "rock-paper-scissors / thumbs": 12,
+    "rock-paper-scissors / rock": 10,
+    "rock-paper-scissors / scissor": 7,
+    "24000-900-300t / 14": 3,
+    "rock-paper-scissors / fingers crossed": 3
+  },
+  "uklonjene_klase_zbog_malog_broja_uzoraka": {},
+  "primjeri_preskocenih_datoteka": {
+    "24000-900-300t / 0": [
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1011.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1013.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1014.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1015.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1122.jpg"
+    ],
+    "24000-900-300t / 14": [
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\14\\677.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\14\\678.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\14\\679.jpg"
+    ],
+    "24000-900-300t / 15": [
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1002.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1003.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1005.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1006.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1007.jpg"
+    ],
+    "24000-900-300t / 17": [
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\17\\1000.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\17\\1001.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\17\\1002.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\17\\1003.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\17\\1005.jpg"
+    ],
+    "24000-900-300t / 3": [
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\3\\475.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\3\\476.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\3\\477.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\3\\480.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\train\\train\\3\\481.jpg"
+    ],
+    "24000-900-300t / 5": [
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\5\\1000.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\5\\1001.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\5\\1002.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\5\\1003.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\24000-900-300t\\test\\test\\5\\1004.jpg"
+    ],
+    "rock-paper-scissors / call me": [
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\call_me\\1070.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\call_me\\1682.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\call_me\\1711.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\call_me\\1721.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\call_me\\1729.jpg"
+    ],
+    "rock-paper-scissors / fingers crossed": [
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\fingers_crossed\\2441.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\fingers_crossed\\5846.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\fingers_crossed\\7183.jpg"
+    ],
+    "rock-paper-scissors / okay": [
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\okay\\1266.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\okay\\1297.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\okay\\1348.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\okay\\1500.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\okay\\1831.jpg"
+    ],
+    "rock-paper-scissors / paper": [
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\paper\\1172.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\paper\\1231.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\paper\\1395.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\paper\\1404.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\paper\\1432.jpg"
+    ],
+    "rock-paper-scissors / rock": [
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock\\1108.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock\\1475.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock\\1669.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock\\2669.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock\\2832.jpg"
+    ],
+    "rock-paper-scissors / rock on": [
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock_on\\1147.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock_on\\2758.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock_on\\2770.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock_on\\2791.jpg",
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\rock_on\\4535.jpg"
+    ],
+    "rock-paper-scissors / scissor": [
+      "ratio_too_large,bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\scissor\\2299.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\scissor\\2910.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\scissor\\2919.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\scissor\\2929.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\scissor\\3799.jpg"
+    ],
+    "rock-paper-scissors / thumbs": [
+      "bbox_too_large,touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\thumbs\\1356.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\thumbs\\1636.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\thumbs\\1736.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\thumbs\\1746.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\thumbs\\2040.jpg"
+    ],
+    "rock-paper-scissors / up": [
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\up\\1209.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\up\\2123.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\up\\3291.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\up\\4168.jpg",
+      "touches_too_many_borders | D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\up\\4737.jpg"
+    ]
+  },
+  "primjeri_preskocenih_po_razlogu": {
+    "bbox_too_large": [
+      "D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\call_me\\5319.jpg",
+      "D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\call_me\\5943.jpg",
+      "D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\okay\\1957.jpg",
+      "D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\okay\\5259.jpg",
+      "D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\paper\\1560.jpg"
+    ],
+    "bbox_too_large,touches_too_many_borders": [
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1011.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1013.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1014.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1015.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\0\\1122.jpg"
+    ],
+    "ratio_too_large,bbox_too_large,touches_too_many_borders": [
+      "D:\\Diplomski\\rock-paper-scissors\\HandGesture\\images\\scissor\\2299.jpg"
+    ],
+    "touches_too_many_borders": [
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1010.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1026.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1040.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1061.jpg",
+      "D:\\Diplomski\\24000-900-300t\\test\\test\\15\\1122.jpg"
+    ]
+  },
+  "evaluacija": {
+    "status": "ok",
+    "accuracy": 0.9971,
+    "test_uzorci": 9504,
+    "macro_avg_f1": 0.9966,
+    "weighted_avg_f1": 0.9971
+  },
+  "ukupno_vrijeme_min": 49.3
+}

@@ -1,20 +1,16 @@
 {
-  "ukupno_slika": 63044,
+  "ukupno_slika": 49243,
   "dataseti": {
     "24000-900-300t": 24000,
-    "L-thumbs": 13801,
     "leapGestRecog": 20000,
     "rock-paper-scissors": 5243
   },
   "splitovi": {
-    "test": 9460,
-    "train": 28341,
+    "test": 6000,
+    "train": 18000,
     "unspecified": 25243
   },
   "top_klase": {
-    "L-thumbs / up": 2542,
-    "L-thumbs / four": 2245,
-    "L-thumbs / three": 2201,
     "leapGestRecog / c": 2000,
     "leapGestRecog / down": 2000,
     "leapGestRecog / fist": 2000,
@@ -25,10 +21,6 @@
     "leapGestRecog / palm": 2000,
     "leapGestRecog / palm moved": 2000,
     "leapGestRecog / thumb": 2000,
-    "L-thumbs / thumbsup": 1951,
-    "L-thumbs / background": 1882,
-    "L-thumbs / L": 1491,
-    "L-thumbs / two": 1489,
     "24000-900-300t / 0": 1200,
     "24000-900-300t / 1": 1200,
     "24000-900-300t / 10": 1200,
@@ -36,13 +28,19 @@
     "24000-900-300t / 12": 1200,
     "24000-900-300t / 13": 1200,
     "24000-900-300t / 14": 1200,
-    "24000-900-300t / 15": 1200
+    "24000-900-300t / 15": 1200,
+    "24000-900-300t / 16": 1200,
+    "24000-900-300t / 17": 1200,
+    "24000-900-300t / 18": 1200,
+    "24000-900-300t / 19": 1200,
+    "24000-900-300t / 2": 1200,
+    "24000-900-300t / 3": 1200,
+    "24000-900-300t / 4": 1200
   },
   "dataset_roots": [
     "D:\\Diplomski\\24000-900-300t",
-    "D:\\Diplomski\\L-thumbs",
-    "D:\\Diplomski\\L-thumbs\\dataset",
     "D:\\Diplomski\\leapGestRecog",
+    "D:\\Diplomski\\ASL\\captured",
     "D:\\Diplomski\\MediaPipe",
     "D:\\Diplomski\\rock-paper-scissors",
     "D:\\Diplomski\\rock-paper-scissors\\HandGesture",

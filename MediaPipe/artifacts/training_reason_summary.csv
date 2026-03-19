@@ -1,0 +1,7 @@
+reason,count
+fallback_accepted,38342
+mediapipe_landmarks_detected,9177
+"bbox_too_large,touches_too_many_borders",1265
+touches_too_many_borders,453
+bbox_too_large,5
+"ratio_too_large,bbox_too_large,touches_too_many_borders",1

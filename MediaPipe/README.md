@@ -35,7 +35,7 @@ Ovaj projekt prolazi kroz sve slike iz zadanih dataset foldera, koristi `MediaPi
 cd "C:\Users\Korisnik\OneDrive\Radna površina\Diplomski\MediaPipe"
 python -m pip install -r requirements.txt
 python mainMedia.py scan
-python mainMedia.py train
+python mainMedia.py train --max-images-per-class 200 --progress-every 100
 python mainMedia.py webcam
 ```
 
@@ -57,7 +57,13 @@ Ponasanje capture moda:
 Za brzi test s manjim brojem slika po klasi:
 
 ```powershell
-python mainMedia.py train --max-images-per-class 200
+python mainMedia.py train --max-images-per-class 200 --progress-every 100
+```
+
+Za puni run nad svim slikama:
+
+```powershell
+python mainMedia.py train
 ```
 
 Za treniranje i odmah kameru:
@@ -73,6 +79,10 @@ Nakon treniranja u `artifacts/` dobijes:
 - `gesture_model.joblib`
 - `training_summary.json`
 - `dataset_summary.json`
+- `training_class_summary.csv`
+- `training_reason_summary.csv`
+- `training_fallback_summary.csv`
+- `training_diagnostics.csv`
 
 ## Napomena za temu rada
 

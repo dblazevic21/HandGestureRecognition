@@ -1,0 +1,41 @@
+label_key,source_dataset,display_label,input_images,successful_features,skipped_images,kept_for_training,removed_for_low_samples,samples_after_filter
+24000-900-300t::0,24000-900-300t,0,1200,991,209,1,0,991
+24000-900-300t::1,24000-900-300t,1,1200,1200,0,1,0,1200
+24000-900-300t::10,24000-900-300t,10,1200,1200,0,1,0,1200
+24000-900-300t::11,24000-900-300t,11,1200,1200,0,1,0,1200
+24000-900-300t::12,24000-900-300t,12,1200,1200,0,1,0,1200
+24000-900-300t::13,24000-900-300t,13,1200,1200,0,1,0,1200
+24000-900-300t::14,24000-900-300t,14,1200,1197,3,1,0,1197
+24000-900-300t::15,24000-900-300t,15,1200,762,438,1,0,762
+24000-900-300t::16,24000-900-300t,16,1200,1200,0,1,0,1200
+24000-900-300t::17,24000-900-300t,17,1200,604,596,1,0,604
+24000-900-300t::18,24000-900-300t,18,1200,1200,0,1,0,1200
+24000-900-300t::19,24000-900-300t,19,1200,1200,0,1,0,1200
+24000-900-300t::2,24000-900-300t,2,1200,1200,0,1,0,1200
+24000-900-300t::3,24000-900-300t,3,1200,1180,20,1,0,1180
+24000-900-300t::4,24000-900-300t,4,1200,1200,0,1,0,1200
+24000-900-300t::5,24000-900-300t,5,1200,1022,178,1,0,1022
+24000-900-300t::6,24000-900-300t,6,1200,1200,0,1,0,1200
+24000-900-300t::7,24000-900-300t,7,1200,1200,0,1,0,1200
+24000-900-300t::8,24000-900-300t,8,1200,1200,0,1,0,1200
+24000-900-300t::9,24000-900-300t,9,1200,1200,0,1,0,1200
+leapGestRecog::c,leapGestRecog,c,2000,2000,0,1,0,2000
+leapGestRecog::down,leapGestRecog,down,2000,2000,0,1,0,2000
+leapGestRecog::fist,leapGestRecog,fist,2000,2000,0,1,0,2000
+leapGestRecog::fist_moved,leapGestRecog,fist moved,2000,2000,0,1,0,2000
+leapGestRecog::index,leapGestRecog,index,2000,2000,0,1,0,2000
+leapGestRecog::l,leapGestRecog,l,2000,2000,0,1,0,2000
+leapGestRecog::ok,leapGestRecog,ok,2000,2000,0,1,0,2000
+leapGestRecog::palm,leapGestRecog,palm,2000,2000,0,1,0,2000
+leapGestRecog::palm_moved,leapGestRecog,palm moved,2000,2000,0,1,0,2000
+leapGestRecog::thumb,leapGestRecog,thumb,2000,2000,0,1,0,2000
+rock-paper-scissors::call_me,rock-paper-scissors,call me,527,458,69,1,0,458
+rock-paper-scissors::fingers_crossed,rock-paper-scissors,fingers crossed,504,501,3,1,0,501
+rock-paper-scissors::okay,rock-paper-scissors,okay,540,443,97,1,0,443
+rock-paper-scissors::paper,rock-paper-scissors,paper,539,489,50,1,0,489
+rock-paper-scissors::peace,rock-paper-scissors,peace,526,526,0,1,0,526
+rock-paper-scissors::rock,rock-paper-scissors,rock,508,498,10,1,0,498
+rock-paper-scissors::rock_on,rock-paper-scissors,rock on,531,518,13,1,0,518
+rock-paper-scissors::scissor,rock-paper-scissors,scissor,527,520,7,1,0,520
+rock-paper-scissors::thumbs,rock-paper-scissors,thumbs,537,525,12,1,0,525
+rock-paper-scissors::up,rock-paper-scissors,up,504,485,19,1,0,485

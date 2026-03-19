@@ -58,5 +58,21 @@ class AppConfig:
     def dataset_summary_path(self) -> Path:
         return self.artifacts_dir / "dataset_summary.json"
 
+    @property
+    def training_class_csv_path(self) -> Path:
+        return self.artifacts_dir / "training_class_summary.csv"
+
+    @property
+    def training_reason_csv_path(self) -> Path:
+        return self.artifacts_dir / "training_reason_summary.csv"
+
+    @property
+    def training_fallback_csv_path(self) -> Path:
+        return self.artifacts_dir / "training_fallback_summary.csv"
+
+    @property
+    def training_diagnostics_csv_path(self) -> Path:
+        return self.artifacts_dir / "training_diagnostics.csv"
+
     def ensure_artifacts_dir(self) -> None:
         self.artifacts_dir.mkdir(parents=True, exist_ok=True)
